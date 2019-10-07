@@ -1,11 +1,11 @@
 /**this function is to read data from database */
 function readTrainInfoFromDB() {
     database.ref().on("value", function (snapshot) {
-        console.log(snapshot.val());
         $("tbody").empty();
 
-        //add each train to table
+        //add each row to table
         snapshot.forEach(function (childSnapshot) {
+            var row_id = childSnapshot.key;
             var cv = childSnapshot.val();
             var trainName = cv.name;
             var trainDest = cv.dest;
@@ -23,14 +23,29 @@ function readTrainInfoFromDB() {
             console.log(minutesToNow);
             console.log("minutes Away = " + minutesAway);
 
-            var newRow = $("<tr>").append(
+            var option_cell = $("<td>");
+            option_cell.append(
+                $("<span class='btn_edit'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Edit</a> </span>'"),
+                $("<span class='btn_delete'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Delete</a> </span>'"),
+
+                //only show these buttons if edit button is clicked
+                $("<span class='btn_save'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Save</a> </span>'"),
+                $("<span class='btn_cancel'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Cancel</a> </span>'"),
+            );
+            var newRow = $("<tr row_id=" + row_id + ">").append(
                 $("<td>").text(trainName),
                 $("<td>").text(trainDest),
                 $("<td>").text(trainFreq),
                 $("<td>").text(nextArrivalTime.format("HH:mm")),
-                $("<td>").text(minutesAway)
+                $("<td>").text(minutesAway),
+                option_cell
             );
             $("tbody").append(newRow);
         });
+
+        //hide save and cancel button
+        $(document).find(".btn_save").hide();
+        $(document).find(".btn_cancel").hide();
     });
+
 }
