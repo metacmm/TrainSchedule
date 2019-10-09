@@ -15,13 +15,17 @@ function saveTrainInfoToDB(){
         firstTime: train_firstTime,
         freq: train_freq
     };
+    const row_id = $("#card-id").attr("row-id");
     console.log(trainObj);
-    //save to database
-    database.ref().push(trainObj);
+    
+    //new item added to database
+    if (row_id === ""){
+        database.ref().push(trainObj);
+    }
+    //update and existing item in database
+    else{
+        database.ref(row_id).set(trainObj);
+    }
 
-    //clear the input boxes
-    $("#name-input").val("");
-    $("#dest-input").val("");
-    $("#firstTime-input").val("");
-    $("#freq-input").val("");
+    resetInputForm();
 }

@@ -28,6 +28,9 @@
     <script src="assets/script/app.js"></script>
     <script src="assets/script/readTrainInfoFromDB.js"></script>
     <script src="assets/script/saveTrainInfoToDB.js"></script>
+    <script src="assets/script/editTrainInfo.js"></script>
+    <script src="assets/script/removeTrainInfo.js"></script>
+    <script src="assets/script/resetInputForm.js"></script>
 </head>
 
 <body>
@@ -57,8 +60,8 @@
         </div>
 
         <div class="card mb-3">
-            <div class="card-header">Add Train</div>
-            <div class="card-body">
+            <div class="card-header" id="head-display">Add Train</div>
+            <div class="card-body" id="card-id" row-id="">
                 <form>
                     <div class="form-group row">
                         <label>Train Name</label>
@@ -78,6 +81,7 @@
                     </div>
                     <div>
                         <input type="submit" value="Submit" id="btn-submit">
+                        <input type="button" value="Cancel" style="visibility: hidden" id="btn-cancel">
                     </div>
                 </form>
             </div>

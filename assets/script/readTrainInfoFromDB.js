@@ -23,19 +23,20 @@ function readTrainInfoFromDB() {
             console.log(minutesToNow);
             console.log("minutes Away = " + minutesAway);
 
+            //add edit/delete buttons for each row
             var option_cell = $("<td>");
             option_cell.append(
-                $("<span class='btn_edit'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Edit</a> </span>'"),
-                $("<span class='btn_delete'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Delete</a> </span>'"),
+                $("<span class='btn-edit'><a href='#' class='btn btn-link'> Edit</a> </span>"),
+                $("<span class='btn-delete'><a href='#' class='btn btn-link'> Delete</a> </span>"),
 
                 //only show these buttons if edit button is clicked
-                $("<span class='btn_save'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Save</a> </span>'"),
-                $("<span class='btn_cancel'><a href='#' class='btn btn-link' row_id=" + row_id + "'> Cancel</a> </span>'"),
+                $("<span class='btn-save'><a href='#' class='btn btn-link'> Save</a> </span>"),
+                $("<span class='btn-cancel'><a href='#' class='btn btn-link'> Cancel</a> </span>"),
             );
-            var newRow = $("<tr row_id=" + row_id + ">").append(
-                $("<td>").text(trainName),
-                $("<td>").text(trainDest),
-                $("<td>").text(trainFreq),
+            var newRow = $("<tr row-id=" + row_id + ">").append(
+                $("<td id='col-name'>").text(trainName),
+                $("<td id='col-dest'>").text(trainDest),
+                $("<td id='col-freq'>").text(trainFreq),
                 $("<td>").text(nextArrivalTime.format("HH:mm")),
                 $("<td>").text(minutesAway),
                 option_cell
@@ -44,8 +45,8 @@ function readTrainInfoFromDB() {
         });
 
         //hide save and cancel button
-        $(document).find(".btn_save").hide();
-        $(document).find(".btn_cancel").hide();
+        $(document).find(".btn-save").hide();
+        $(document).find(".btn-cancel").hide();
     });
 
 }
