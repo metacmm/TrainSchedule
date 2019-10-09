@@ -1,6 +1,7 @@
 /** reset the input form */
 function resetInputForm(){
     $("#head-display").text("Add Train");
+    $("#head-display").removeClass("bg-info");
     $("#name-input").val("");
     $("#dest-input").val("");
     $("#firstTime-input").val("");

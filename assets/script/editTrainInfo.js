@@ -17,11 +17,15 @@ function editTrainInfo() {
         $("#dest-input").val(train_dest);
         $("#firstTime-input").val(train_startTime);
         $("#freq-input").val(train_freq);
+
+        //update the bottom card to edit mode
+        $("#card-id").attr("row-id", row_id);
+        $("#head-display").addClass("bg-info");
+        $("#btn-submit").val("Save");
+        $("#btn-cancel").css("visibility","visible");
+        $(".btn-edit").hide();
+        $(".btn-delete").hide();
     });
 
-    $("#card-id").attr("row-id", row_id);
-    $("#btn-submit").val("Save");
-    $("#btn-cancel").css("visibility","visible");
-    $(".btn-edit").hide();
-    $(".btn-delete").hide();
+
 }
